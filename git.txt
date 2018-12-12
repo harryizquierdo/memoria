@@ -8,7 +8,9 @@
 
 # Para realizar las configuraciones iniciales
 
+
 1→ git config --global http.proxy #ver el valor que tiene asignado
 2→ git config --global http.proxy IP:Puerto #Para asignarle un valor a la propiedad
 → git config --global name harryizquierdo
 → git config --global email harry.richard.izquierdo@gmail.com
+→ git config --global -l #Se presentan todas los parametros globales
