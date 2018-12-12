@@ -1,0 +1,16 @@
+#Agregar parametro java para que jboss en domain tome almacén de claves (keystore)
+
+1→ java -version #conocer con que versión se está trabajando
+2→ locate cacerts #encontrar ruta del alamacén de claves según la versión que se esté trabajando
+3→ ps -ef | grep java #conocer la ruta en la que jboss está trabajando
+4→ locate domain.conf #conocer la ruta del arhivo de configuración para jboss
+5→ vim {ruta(4)}/domain.conf
+----------------------------------------------------------------------
+   #ini: seteo de cacerts
+   JAVA_OPTS="$JAVA_OPTS -Djavax.net.ssl.keyStore={ruta(2)}/cacerts"
+   JAVA_OPTS="$JAVA_OPTS -Djavax.net.ssl.keyStorePassword=changeit"
+   JAVA_OPTS="$JAVA_OPTS -Djavax.net.ssl.trustStore={ruta(2)}/cacerts"
+   JAVA_OPTS="$JAVA_OPTS -Djavax.net.ssl.trustStorePassword=changeit"
+   #fin: seteo de cacerts
+----------------------------------------------------------------------
+

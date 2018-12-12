@@ -1,0 +1,17 @@
+#ingresar a mysql o mariadb del xampp windows
+
+1→ cd C:\xampp\mysql\bin
+2→ mysql.exe -u root -p #En caso de no tener password se puede dar enter
+3→ show databases; #Apreciar las BD que se tienen con el usuario que se ingresó
+
+#Exportar base de datos en *.sql
+
+1→ #ingresar a mysql o mariadb del xampp windows
+2→ exit
+3→ mysqldump.exe -u root -p -B {BDEscogida} > {ruta}\{BDEscogida}.sql #se usa -B para que incluya el "create database"
+
+#Importar base de datos en *.sql
+
+1→ cd C:\xampp\mysql\bin
+2→ mysql -u root -p -h 127.0.0.1 {NombreBD} < C:\xampp\test.sql #El {NombreBD} se usa para escoger la BD solo si al exportar no se usa el -B
+

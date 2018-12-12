@@ -1,0 +1,34 @@
+
+#Descargar el certificado de una página y agregarlo al almacén de claves (cacerts); Los archivos con los que he importado y probado son crt, cer, cert
+
+1→ echo -n | openssl s_client -connect {host}:{port} | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' > {rutaDeseada}/{host}.cert #Si se tiene proxy seguir el ejemplo: -proxy 127.0.0.1:3000
+2→ locate keytool
+3→ locate cacerts
+4→ cp {ruta(3)}/cacerts {rutaDeseada}/cacerts.BK{fechaActual}
+6→ {ruta}/keytool -import -alias nombreAlias -file {rutaDeseada(1)}/{host}.cert -keystore {ruta(3)}/cacerts -storepass changeit
+7→ lynx {host}:{port} #Verificar la navegación desde la consola
+
+#Listar todos los certificados
+
+1→ locate keytool
+2→ locate cacerts
+3→ {ruta}/keytool -list -v -keystore {ruta(2)}/cacerts -storepass changeit > {rutaDeseada}/listaCacerts.txt #Se usa -v para tener de forma detallada
+
+#exportar un certtificado de un almacen
+
+1→ locate keytool
+2→ locate cacerts
+3→ #Listar todos los certificados
+4→ vim {rutaDeseada}/listaCacerts.txt #buscar cual es el certificado a exportar y obtener el alias
+5→ {ruta(1)}/keytool -export -alias {alias(4)} -keystore {ruta(2)}/cacerts -storepass changeit -file {rutaDeseada}/{host}.crt
+
+#ver un certificado
+
+1→ openssl x509 -in {ruta}/certificado.cer -text -noout
+
+##########################
+#links
+http://switchoffandletsgo.blogspot.com/2008/07/importar-certificados-en-java.html#.XAfYc2gzaUn
+https://arcaser.wordpress.com/2013/11/06/anadir-un-certificado-al-fichero-cacert-de-java/
+https://loquemeinteresadelared.wordpress.com/2015/11/19/importar-un-certificado-de-una-ca-en-el-cacerts-de-la-jdk/
+https://juncotic.com/x509-certificados-digitales-der-crt-cer/
