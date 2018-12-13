@@ -1,0 +1,68 @@
+#monitoreo valores de uso de CPU, memoria, swap y la posibilidad de manupular procesos.
+
+1→ top
+---------------- DESCIPCIÓN
+	1. Tiempo de actividad y carga media del sistema
+	-Hora actual.
+	-Tiempo que ha estado el sistema encendido.
+	-Número de usuarios (mario y root).
+	-Carga media en intervalos de 5, 10 y 15 minutos respectivamente.
+	2. Tareas
+	-Running (ejecutar): procesos ejecutándose actualmente o preparados para ejecutarse.
+	-Sleeping (hibernar): procesos dormidos esperando que ocurra algo (depende del proceso) para ejecutarse.
+	-Stopped (detener): ejecución de proceso detenida.
+	-Zombie: el proceso no está siendo ejecutado. Estos procesos se quedan en este estado cuando el proceso que los ha iniciado muere (padre).
+	3. Estados de la CPU (porcentajes de uso del procesador diferenciado por el uso que se le de.)
+	-%us: (usuario): muestra el uso de cpu del usuario
+	-%sy: (sistema): muestra el uso de cpu del sistema(kernel).
+	-%ni: (nice): Porcentaje de CPU con prioridad de upgrade.
+	-%id: (inactivo): muestra el uso de cpu disponible para utilizar.
+	-%wa: (en espera): muestra en porcentaje el tiempo en espera del cpu para manejo de I/O.
+	-%hi: (interrupciones de hardware): interrupciones de hardware.
+	-%si: (interrupciones de software): tiempo de CPU en interrupciones de software.
+	4. Memoria física (los valores pueden ser algo enañosos)
+	-Total: Es el valor total de la memoria fisica
+	-Used: Es el valor de la memoria utilizada
+	-Free: Es el valor de la memoria libre
+	-Buffered: Es el valor de memoria fisica que esta en el buffer de memoria.
+	5. Memoria virtual (memoria SWAP) similar al punto 4 con la diferencia
+	-cached: memoria que es usada para el cache.
+	6. Columnas
+	-PID: es el identificador de proceso. Cada proceso tiene un identificador único.
+	-USER (USUARIO): usuario propietario del proceso.
+	-PR: prioridad del proceso. Si pone RT es que se está ejecutando en tiempo real.
+	-NI: asigna la prioridad. Si tiene un valor bajo (hasta -20) quiere decir que tiene más prioridad que otro con valor alto (hasta 19).
+	-VIRT: cantidad de memoria virtual utilizada por el proceso.
+	-RES: cantidad de memoria RAM física que utiliza el proceso.
+	-SHR: memoria compartida.
+	-S (ESTADO): estado del proceso.
+	-%CPU: porcentaje de CPU utilizado desde la última actualización.
+	-%MEM: porcentaje de memoria física utilizada por el proceso desde la última actualización.
+	-TIME+ (HORA+): tiempo total de CPU que ha usado el proceso desde su inicio.
+	-COMMAND: comando utilizado para iniciar el proceso.
+
+	Commandos: Dentro del programa podemos interactuar con el con varias opciones:
+	k :: Si se quiere matar el proceso, luego debemos ingresar el numero de su PID.
+	r :: Cambia la prioridad del proceso
+	O (upercase) :: Muestra las posibles columnas que podemos agregar a la lista de procesos
+	1 :: Muestra la información de todos los cores
+	z o b :: Agregan colores a la interfaz
+	c :: Muestra el path absoluto del binario que se esta ejecutando.
+	n :: nos permite reducir la lista a “n” procesos.
+	N (upercase) :: Ordena los procesos por PID
+	A (upercase) :: Ordena los procesos por aparicion, primero se encuentran los mas nuevos
+	P (upercase) :: Ordena los procesos por uso de CPU, esta opcion es la default
+	M (upercase) :: Ordena los procesos por memoria residente
+	T (upercase) :: Ordena los procesos por tiempo.
+	W (upercase) :: Guarda la configuracion que hicimos
+	q :: Salir de Top
+	switches: además de las opciones anteriores:
+	→ top -u usuario :: Muestra los procesos que estan corriendo con ese usuario y sus valores
+	→ top -p PID :: muestra el proceso seleccionado y sus valores
+	→ top -n numero :: Numero es la cantidad de iteraciones que va a tener el comando y luego se cerrara
+	→ top -d numero :: “Numero” es el tiempop en segundos que va a esperar el comando para refrescar la lista.
+	→ top -b :: Batch mode, ideal para mandar resultados desde top a otros programas
+------------
+2→ grep processor /proc/cpuinfo | wc -l #Total de cores en la PC
+3→ uptime #Tiempo de actividad y carga media del sistema
+4→ mpstat #Estados de la CPU
