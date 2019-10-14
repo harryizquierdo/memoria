@@ -14,3 +14,17 @@
 → git config --global name harryizquierdo
 → git config --global email harry.richard.izquierdo@gmail.com
 → git config --global -l #Se presentan todas los parametros globales
+
+
+#Pendientes
+→ git flow init
+git flow feature start headerGPF
+git flow feature finish headerGPF
+git branch
+git log --oneline
+git remote add origin https://github.com/harryizquierdo/appCorporacionGPF.git
+git push origin master
+git push origin develop
+git push -u origin develop
+git remote rm origin https://github.com/harryizquierdo/CorporacionGPF.git
+git remote -v

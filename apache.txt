@@ -1,0 +1,2 @@
+#Conocer la versión de apache desde terminal
+    → httpd -v

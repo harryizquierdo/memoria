@@ -1,0 +1,11 @@
+--Tipo: PHP
+--Descripción: Peso de los archivos en KB y redondeado a 2 digitos
+--Comandos:
+$file = '/path/to/your/file';
+$filesize = filesize($file); // bytes
+$filesize = round($filesize / 1024, 2); // kilobytes with two digits
+
+--Tipo: PHP
+--Descripción: Dimensiones de una imágen
+--Comandos:
+print_r(getimagesize('http://www.google.com/images/logos/ps_logo2.png'));

@@ -1,0 +1,42 @@
+--Tipo: Linux
+--Descripción: Este comando lo usaré solamente para obtener el número del proceso que tiene el Jboss en nuestro portal.
+--Comando:
+ps -ef | grep /data/jboss-4.2.3.GA | grep -v grep | awk '{print $2}'
+
+--Tipo: Linux
+--Descripción: Matar procesos abiertos de Jboss y correr nuevamente Jboss
+--Comando:
+sudo -- sh -c "ps -ef | grep jbossws | grep -v grep | grep -v tail | awk '{print \$2}' | xargs --no-run-if-empty kill -9 ; cd /data/jbossws/bin/ ; ./standalone.sh -b 0.0.0.0 > run.log &"
+
+--Tipo: Linux
+--Descripción: Obtener la ruta de localización de los Jboss
+--Comando:
+ps -ef | grep java | grep -v grep | awk 'BEGIN {RS=" "}; /-Djboss.home.dir/' | sed -n 's/^.*-Djboss\.home\.dir=\([^ ]*\).*$/\1/p'
+
+--Tipo: Linux
+--Descripción: Conocer las interfases que están configuradas en Jboss
+--Comandos:
+sed -n '/<interface/,/<\/interface/p' /data/cluster/jboss-soap/standalone/configuration/standalone.xml
+
+for jboss in $(ps -ef | grep java | grep -v grep | awk 'BEGIN {RS=" "}; /-Djboss.home.dir/' | sed -n 's/^.*-Djboss\.home\.dir=\([^ ]*\).*$/\1/p'); do echo "#### $jboss ####"; find "$jboss" -name 'standalone.xml' -exec sed -n '/<interface/,/<\/interface/p' {} +; done
+
+--Tipo: Linux
+--Descripción: Ejecutar comando como root siendo otro usuario
+--Comando:
+echo SrvTmp.2018 | sudo su - root -c "sleep 5m&"
+
+--Tipo: Linux
+--Descripción: ingresar a una carpeta listar la misma concatenada con un prefijo y la lista guardada en un archivo txt
+--Comando:
+cd /var/www/html/ ; ls -d ./* | sed -e 's/^.//' | tr '\n' '\0' | xargs -0 -L1 -I '$' echo 'www.fybeca.com$' > /home/jlcampoverdep/landings.txt
+
+--Tipo: Linux
+--Descripción: De un directorio listar las el nombre de imagenes, conocer sus dimensiones y peso del archivo.
+--Comando:
+for i in *.png; do php -r "echo ('$i, ' . array_values(getimagesize('http://testm2c.fybeca.net/test/$i'))[3] . ', ' . round(filesize('$i')/1024,1) . 'K') . PHP_EOL;"; done
+for i in *.jpg; do php -r "echo ('$i, ' . array_values(getimagesize('http://testm2c.fybeca.net/test/$i'))[0] . ', ' . array_values(getimagesize('http://testm2c.fybeca.net/test/$i'))[1] . ', ' . round(filesize('$i')/1024,1) . 'K') . PHP_EOL;"; done
+
+--Tipo: Linux
+--Descripción: obtener la cantidad de archivos listados de un formato en especifico
+--Comando:
+ls | grep '\.png$' | wc -l

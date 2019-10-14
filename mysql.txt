@@ -15,3 +15,21 @@
 1→ cd C:\xampp\mysql\bin
 2→ mysql -u root -p -h 127.0.0.1 {NombreBD} < C:\xampp\test.sql #El {NombreBD} se usa para escoger la BD solo si al exportar no se usa el -B
 
+#Asignar contraseña a un usuario en caso de no tenerla
+1→ #ingresar a mysql o mariadb del xampp windows
+2→ select host, user, password from mysql.user; #Verificar que no tenga contraseña
+3→ use mysql;
+4→ update user SET PASSWORD=PASSWORD("password") WHERE USER='root';
+5→ FLUSH PRIVELEGES;
+6→ reiniciar el servicio de mysql o mariadb desde el XAMPP o con "sudo systemctl start mariadb"
+7→ #ingresar a mysql o mariadb del xampp windows
+
+#Crear base de datos en blanco
+1→ #ingresar a mysql o mariadb del xampp windows
+2→ CREATE DATABASE IF NOT EXISTS database_name
+
+#Para que MySQL sea permita BD y tablas en lowerCamelCase
+1→ Abrir archivo my.ini 
+2→ Agregar y reeemplazar la siguiente linea:
+    lower_case_table_names=2
+3→ Reiniciar el servicio de mysql

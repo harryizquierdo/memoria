@@ -1,0 +1,22 @@
+1→ instalar el node.js
+2→ verificar versiones:
+	node -v
+	npm -v
+3→ instalar el nvm (node version manager)
+4→ instalar typescript: 
+	npm install -g typescript
+5→ verificar version
+	npm ls typescript	||	tsc --version
+6→ instalar angular:
+	npm install -g @angular/cli
+7→ verificar versión del angular
+	ng -v
+8→ instalar ionic
+	npm install -g ionic
+9→ si se tiene algún problema con npm se debe limpiar la cache 
+	npm cache clean -f
+10→ Actualiza a la versión estable de npm
+	npm i -g npm@latest
+11→ Actualizar la versión de las dependencias que se encunetran sobre el archivo package.json para no hacerlo manual
+	npm i -g npm-check-updates
+	npm-check-updates -u 	||	ncu -u

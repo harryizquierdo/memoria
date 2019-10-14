@@ -1,0 +1,1 @@
+→ npm view <nombre_dependencia> #npm view phonegap

@@ -66,3 +66,20 @@
 2→ grep processor /proc/cpuinfo | wc -l #Total de cores en la PC
 3→ uptime #Tiempo de actividad y carga media del sistema
 4→ mpstat #Estados de la CPU
+
+
+
+#Mostrar el sistema operativo y su version
+	→ cat /etc/os-release
+	→ lsb_release -a
+
+#Arquitectura del SO
+	→ uname -m
+
+#Número de procesadores
+	→ nproc --all
+
+#Para varios comandos en una sola linea
+	→ A ; B   = Corre A y despues B, idenpendientemente si falla o no A
+	→ A && B  – Corre B solamente si A está correcto
+	→ A || B  – Corre B solo si A falla
